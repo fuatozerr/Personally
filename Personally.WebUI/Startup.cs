@@ -21,7 +21,7 @@ namespace Personally.WebUI
         {
             services.AddScoped<INoteDal, EfCoreNoteDal>();
             //services.AddScoped<ICategoryDal, ICategoryManager>(); ilerde yapacağım
-            services.AddScoped<INoteDal, EfCoreNoteDal>();
+            services.AddScoped<INoteService, INoteManager>();
             services.AddScoped<ICategoryDal, EfCoreCategoryDal>();
 
 

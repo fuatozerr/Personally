@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Personally.Entities
 {
-   public class Note:BaseEntity
+   public class Note
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public bool IsDraft { get; set; }
         public int LikeCount { get; set; }

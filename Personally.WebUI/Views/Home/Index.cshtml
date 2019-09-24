@@ -1,7 +1,25 @@
-﻿
+﻿@model Personally.WebUI.Models.NoteListModel
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Hoşgeldiniz</h1>
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                @foreach (var note in Model.Notes)
+                {
 
+                    <p>@note.Owner</p>
+                    <p>@note.Title</p>
+                    <p>@note.UserId</p>
+                    <p>@note.ImageUrl</p>
+                    <p>@note.noteCategories</p>
+
+
+                }
+            </div>
+
+        </div>
+    </div>
