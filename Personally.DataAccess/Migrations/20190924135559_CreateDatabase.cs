@@ -31,6 +31,7 @@ namespace Personally.DataAccess.Migrations
                     LikeCount = table.Column<int>(nullable: false),
                     Owner = table.Column<string>(nullable: true),
                     UserId = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
                     ImageUrl = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

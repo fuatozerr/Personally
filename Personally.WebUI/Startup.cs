@@ -33,7 +33,9 @@ namespace Personally.WebUI
         {
             if (env.IsDevelopment())
             {
+
                 app.UseDeveloperExceptionPage();
+                SeedDatabase.Seed();
             }
 
             app.UseStaticFiles(); //wwwroot klasörünü açıyorum

@@ -12,9 +12,9 @@ namespace Personally.Entities
         public int LikeCount { get; set; }
         public string Owner { get; set; }
         public int UserId { get; set; }
-
+        public string Description { get; set; }
         public string ImageUrl { get; set; }
-
+        public List<Comment> Comments { get; set; }
         public List<NoteCategory> noteCategories { get; set; }
 
     }

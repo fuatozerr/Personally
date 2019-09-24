@@ -9,8 +9,8 @@ using Personally.DataAccess.Concrete;
 namespace Personally.DataAccess.Migrations
 {
     [DbContext(typeof(PersonallyContext))]
-    [Migration("20190924120356_CreateDatabase")]
-    partial class CreateDatabase
+    [Migration("20190924140405_AddingComment")]
+    partial class AddingComment
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,11 +33,28 @@ namespace Personally.DataAccess.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("Personally.Entities.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("NoteId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NoteId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("Personally.Entities.Note", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description");
 
                     b.Property<string>("ImageUrl");
 
@@ -69,6 +86,14 @@ namespace Personally.DataAccess.Migrations
                     b.HasIndex("NoteId");
 
                     b.ToTable("NoteCategory");
+                });
+
+            modelBuilder.Entity("Personally.Entities.Comment", b =>
+                {
+                    b.HasOne("Personally.Entities.Note", "Note")
+                        .WithMany("Comments")
+                        .HasForeignKey("NoteId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Personally.Entities.NoteCategory", b =>

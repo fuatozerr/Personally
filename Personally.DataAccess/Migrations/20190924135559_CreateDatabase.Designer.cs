@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Personally.DataAccess.Concrete;
 
 namespace Personally.DataAccess.Migrations
 {
     [DbContext(typeof(PersonallyContext))]
-    partial class PersonallyContextModelSnapshot : ModelSnapshot
+    [Migration("20190924135559_CreateDatabase")]
+    partial class CreateDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,21 +31,6 @@ namespace Personally.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("Personally.Entities.Comment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("NoteId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NoteId");
-
-                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Personally.Entities.Note", b =>
@@ -84,14 +71,6 @@ namespace Personally.DataAccess.Migrations
                     b.HasIndex("NoteId");
 
                     b.ToTable("NoteCategory");
-                });
-
-            modelBuilder.Entity("Personally.Entities.Comment", b =>
-                {
-                    b.HasOne("Personally.Entities.Note", "Note")
-                        .WithMany("Comments")
-                        .HasForeignKey("NoteId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Personally.Entities.NoteCategory", b =>
