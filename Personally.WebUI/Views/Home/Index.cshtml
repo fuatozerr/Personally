@@ -7,18 +7,18 @@
         <div class="col-md-8">
 
             <h1 class="my-4">
-                Bilge Adam nbuy
+                <b>SENİ ÇOK SEVİYORUM BERFİN</b>
             </h1>
 
             <!-- Blog Post -->
             @foreach (var item in Model.Notes)
             {
                 <div class="card mb-4">
-                    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+                    <img class="card-img-top" src="~/img/@item.ImageUrl" alt="Card image cap">
                     <div class="card-body">
                         <h2 class="card-title">@item.Title</h2>
                         <p class="card-text">@item.Description</p>
-                        <a href="#" class="btn btn-primary">Devamını oku &rarr;</a>
+                        <a asp-controller="Note" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary">Devamını oku &rarr;</a>
                     </div>
                     <div class="card-footer text-muted">
                         Posted on January 1, 2017 by @item.Owner
