@@ -10,6 +10,7 @@ using Personally.Business.Abstract;
 using Personally.Business.Concrete;
 using Personally.DataAccess.Abstract;
 using Personally.DataAccess.Concrete;
+using Personally.WebUI.Middlewares;
 
 namespace Personally.WebUI
 {
@@ -39,6 +40,8 @@ namespace Personally.WebUI
             }
 
             app.UseStaticFiles(); //wwwroot klasörünü açıyorum
+            app.StandartStaticFile();
+
 
 
             app.UseMvc(routes => {
