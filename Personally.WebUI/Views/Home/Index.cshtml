@@ -1,26 +1,49 @@
 ﻿@model Personally.WebUI.Models.NoteListModel
-@{
-    ViewData["Title"] = "Index";
-}
+<div class="container">
 
     <div class="row">
-        <div class="col-md-3">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+            <h1 class="my-4">
+                Bilge Adam nbuy
+            </h1>
+
+            <!-- Blog Post -->
+            @foreach (var item in Model.Notes)
+            {
+                <div class="card mb-4">
+                    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+                    <div class="card-body">
+                        <h2 class="card-title">@item.Title</h2>
+                        <p class="card-text">@item.Description</p>
+                        <a href="#" class="btn btn-primary">Devamını oku &rarr;</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on January 1, 2017 by @item.Owner
+                    </div>
+                </div>}
+
+
+            <hr />
+            <!-- Pagination -->
+            <ul class="pagination justify-content-center mb-4">
+                <li class="page-item">
+                    <a class="page-link" href="#">&larr; Older</a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Newer &rarr;</a>
+                </li>
+            </ul>
+
         </div>
-        <div class="col-md-9">
-            <div class="row">
-                @foreach (var note in Model.Notes)
-                {
 
-                    <p>@note.Owner</p>
-                    <p>@note.Title</p>
-                    <p>@note.ImageUrl</p>
-                    <p>@note.noteCategories</p>
-                    <p>@note.Description</p>
-                    <hr />
+        <partial name="_categorypartial" />
+        <!-- Sidebar Widgets Column -->
 
 
-                }
-            </div>
-
-        </div>
     </div>
+    <!-- /.row -->
+
+</div>

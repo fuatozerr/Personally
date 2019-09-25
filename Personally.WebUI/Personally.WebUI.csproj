@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Personally.Business\Personally.Business.csproj" />
     <ProjectReference Include="..\Personally.DataAccess\Personally.DataAccess.csproj" />
   </ItemGroup>
