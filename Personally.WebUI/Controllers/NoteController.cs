@@ -39,8 +39,10 @@ namespace Personally.WebUI.Controllers
             return View(new NoteDetailModel()
             {
                 Note=noteDetail,
-                Categories=noteDetail.noteCategories.Select(x=>x.Category).ToList()
-            });
+                Categories=noteDetail.noteCategories.Select(x=>x.Category).ToList(),
+                Comments=noteDetail.Comments
+
+            });;
         }
 
 

@@ -11,25 +11,24 @@
 
     </div>
     <div class="card-footer text-muted">
-       BURAYA YORUMLAR GELECEK <br />
-        <a asp-controller="Home" asp-action="Index">Anasayfaya Dön!</a>
+        @foreach (var item in Model.Comments)
+        {
+            @item.Description <br /> @item.Note.Owner<hr />
+        }        <a asp-controller="Home" asp-action="Index">Anasayfaya Dön!</a>
 
     </div>
 
 
 </div>
 <div class="card col-md-4 mb-4">
-    @foreach(var item in Model.Categories)
-    {
-        <a href="#"> @item.Title</a>
-    }
+   
 
 </div>
 
     <div class="row">
         <div class="col-md-12">
             <p class="p-3">
-
+               
             </p>
         </div>
     </div>

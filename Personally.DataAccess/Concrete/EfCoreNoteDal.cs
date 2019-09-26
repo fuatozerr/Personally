@@ -19,10 +19,16 @@ namespace Personally.DataAccess.Concrete
         {
             using (var context=new PersonallyContext())
             {
-                return context.Notes.Where(x => x.Id == id).Include(x => x.noteCategories).ThenInclude(x => x.Category).FirstOrDefault();
+                return context.Notes.Where(x=>x.Id==id)
+                    .Include(x=>x.noteCategories).ThenInclude(x=>x.Category)
+                    .Include(x=>x.Comments)               
+                    .FirstOrDefault();
             }
         }
 
-      
+        public Note GetNoteDetails(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
