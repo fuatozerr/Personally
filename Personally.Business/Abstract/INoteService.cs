@@ -9,11 +9,12 @@ namespace Personally.Business.Abstract
     {
         Note GetById(int id);
         List<Note> GetAll();
-
+        Note GetNoteDetail(int id);
         void Create(Note Entity);
         void Update(Note Entity);
 
         void Delete(Note Entity);
+
 
     }
 }

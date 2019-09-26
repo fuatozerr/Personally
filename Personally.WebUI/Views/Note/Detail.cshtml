@@ -1,22 +1,35 @@
-﻿@model Note
+﻿@model NoteDetailModel
 
 
-<div class="card mb-4">
-    <img class="card-img-top" src="~/img/@Model.ImageUrl" alt="Card image cap">
+<div class="card col-md-8 mb-4">
+    <img class="card-img-top" src="~/img/@Model.Note.ImageUrl" alt="Card image cap">
     <div class="card-body">
-        <h2 class="card-title">@Model.Title</h2>
-        <p class="card-text">@Model.Description</p>
-       
+        <h2 class="card-title">@Model.Note.Title</h2>
+        <p class="card-text">@Model.Note.Description</p>
+        <br />
+        Posted on January 1, 2017 by @Model.Note.Owner<br />
+
     </div>
     <div class="card-footer text-muted">
-        Posted on January 1, 2017 by @Model.Owner
+       BURAYA YORUMLAR GELECEK <br />
+        <a asp-controller="Home" asp-action="Index">Anasayfaya Dön!</a>
+
     </div>
+
+
+</div>
+<div class="card col-md-4 mb-4">
+    @foreach(var item in Model.Categories)
+    {
+        <a href="#"> @item.Title</a>
+    }
+
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <p class="p-3">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="p-3">
 
-        </p>
+            </p>
+        </div>
     </div>
-</div>

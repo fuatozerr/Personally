@@ -35,6 +35,11 @@ namespace Personally.Business.Concrete
             return _noteDal.GetById(id);
         }
 
+        public Note GetNoteDetail(int id)
+        {
+            return _noteDal.GetNoteDetail(id);
+        }
+
         public void Update(Note Entity)
         {
             _noteDal.Delete(Entity);

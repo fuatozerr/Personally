@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Personally.Business.Abstract;
 using Personally.Entities;
+using Personally.WebUI.Models;
 
 namespace Personally.WebUI.Controllers
 {
@@ -28,8 +29,26 @@ namespace Personally.WebUI.Controllers
                 return NotFound();
             }
 
-            Note noteDetail = _noteService.GetById((int)id);
-            return View(noteDetail);
+            Note noteDetail = _noteService.GetNoteDetail((int)id);
+            if(noteDetail==null)
+            {
+                return NotFound();
+            }
+
+
+            return View(new NoteDetailModel()
+            {
+                Note=noteDetail,
+                Categories=noteDetail.noteCategories.Select(x=>x.Category).ToList()
+            });
         }
+
+
+        public IActionResult AddNote()
+        {
+            return View();
+        }
+
+
     }
 }

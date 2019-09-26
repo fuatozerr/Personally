@@ -1,7 +1,9 @@
-﻿using Personally.DataAccess.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using Personally.DataAccess.Abstract;
 using Personally.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Personally.DataAccess.Concrete
@@ -13,9 +15,14 @@ namespace Personally.DataAccess.Concrete
             throw new NotImplementedException();
         }
 
-        public Note GetNoteDetails(int id)
+        public Note GetNoteDetail(int id)
         {
-            throw new NotImplementedException();
+            using (var context=new PersonallyContext())
+            {
+                return context.Notes.Where(x => x.Id == id).Include(x => x.noteCategories).ThenInclude(x => x.Category).FirstOrDefault();
+            }
         }
+
+      
     }
 }

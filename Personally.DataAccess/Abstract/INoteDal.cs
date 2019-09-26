@@ -7,8 +7,10 @@ namespace Personally.DataAccess.Abstract
 {
     public interface INoteDal:IRepository<Note>
     {
-        Note GetNoteDetails(int id);
+        //Note GetNoteDetails(int id);
         List<Note> GetAllNote();
+
+        Note GetNoteDetail(int id);
 
     }
 }
