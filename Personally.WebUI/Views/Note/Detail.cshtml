@@ -1,7 +1,7 @@
 ﻿@model NoteDetailModel
 
 
-<div class="card col-md-8 mb-4">
+<div class="card col-md-8 stilim">
     <img class="card-img-top" src="~/img/@Model.Note.ImageUrl" alt="Card image cap">
     <div class="card-body">
         <h2 class="card-title">@Model.Note.Title</h2>
@@ -10,25 +10,58 @@
         Posted on January 1, 2017 by @Model.Note.Owner<br />
 
     </div>
-    <div class="card-footer text-muted">
-        @foreach (var item in Model.Comments)
-        {
-            @item.Description <br /> @item.Note.Owner<hr />
-        }        <a asp-controller="Home" asp-action="Index">Anasayfaya Dön!</a>
+    @foreach (var item in Model.Comments)
+    {
+        <div class="custombox clearfix">
+            <h4 class="small-title">@item.Note.LikeCount kez beğenildi</h4>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="comments-list">
+                        <div class="media">
+                            <a class="media-left" href="#">
+                                <img src="upload/author.jpg" alt="" class="rounded-circle">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading user_name">@item.Note.Owner <small>DÜZELTİLECEK</small></h4>
+                                <p>@item.Description</p>
+                                <a href="#" class="btn btn-primary btn-sm">Reply</a>
+                            </div>
+                        </div>
 
-    </div>
 
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end custom-box -->}
 
 </div>
-<div class="card col-md-4 mb-4">
-   
-
+<div class="col-md-4">
+    <div class="widget">
+        <h2 class="widget-title">Hangi Kategoriye Ait</h2>
+        <div class="link-widget">
+            <ul>
+                @foreach (var item in Model.Categories)
+                {
+                <li><a href="#">@item.Title  <span>(21) buray GELECEM</span></a></li>
+                }
+                
+            </ul>
+        </div><!-- end link-widget -->
+    </div><!-- end widget -->
 </div>
 
+<div class="custombox clearfix col-md-8 stilim">
+    <h4 class="small-title">Yorum Yap</h4>
     <div class="row">
-        <div class="col-md-12">
-            <p class="p-3">
-               
-            </p>
+        <div class="col-lg-12">
+            <form class="form-wrapper">
+                <input type="text" class="form-control" placeholder="Adınız">
+                <input type="text" class="form-control" placeholder="Email">
+                <textarea class="form-control" placeholder="Yorumunuz"></textarea>
+                <button type="submit" class="btn btn-primary">Yorumu yolla</button>
+            </form>
         </div>
     </div>
+</div>  
+
+               
