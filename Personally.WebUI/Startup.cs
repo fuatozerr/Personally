@@ -48,7 +48,7 @@ namespace Personally.WebUI
 
                 routes.MapRoute(
                     name: "notes",
-                    template: "notes/{id?}",
+                    template: "notes/{category?}",
                     defaults:new {controller="Note",action="List"});
 
 

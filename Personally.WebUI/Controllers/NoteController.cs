@@ -51,13 +51,21 @@ namespace Personally.WebUI.Controllers
             return View();
         }
 
-        public IActionResult List(int? id,int page=1)
+        public IActionResult List(string category,int page=1)
         {
             const int pageSize = 2;
             return View(new NoteListModel()
             {
-                Notes=_noteService.GetNotesByCategory(id,page,pageSize)
-            });
+                 PageInfo=new PageInfo()
+                 {
+                     TotalItems=_noteService.GetCounByCategory(category),
+                     CurrentPage=page,
+                     ItemsPerPage=pageSize,
+                     CurrentCategory=category
+                 },
+
+                Notes=_noteService.GetNotesByCategory(category, page,pageSize)
+            });;
         }
 
     }

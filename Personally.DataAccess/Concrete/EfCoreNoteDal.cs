@@ -15,6 +15,24 @@ namespace Personally.DataAccess.Concrete
             throw new NotImplementedException();
         }
 
+        public int GetCounByCategory(string category)
+        {
+
+            using (var context = new PersonallyContext())
+            {
+                var notes = context.Notes.AsQueryable(); //içinde sorgu yapılcak
+
+                if (!string.IsNullOrEmpty(category))
+                {
+                    notes = notes.Include(x => x.noteCategories)
+                        .ThenInclude(x => x.Category)
+                        .Where(x => x.noteCategories.Any(a => a.Category.Title.ToLower() == category.ToLower()));
+                }
+
+                return notes.Count();
+            }
+        }
+
         public Note GetNoteDetail(int id)
         {
             using (var context=new PersonallyContext())
@@ -25,17 +43,17 @@ namespace Personally.DataAccess.Concrete
                     .FirstOrDefault();
             }
         }
-        public List<Note> GetNotesByCategory(int? id, int page, int pageSize)
+        public List<Note> GetNotesByCategory(string category, int page, int pageSize)
         {
             using (var context=new PersonallyContext())
             {
                 var notes = context.Notes.AsQueryable(); //içinde sorgu yapılcak
 
-                if(id!=null)
+                if (!string.IsNullOrEmpty(category))
                 {
                     notes = notes.Include(x => x.noteCategories)
                         .ThenInclude(x => x.Category)
-                        .Where(x => x.noteCategories.Any(i=>i.Category.Id==id));
+                        .Where(x => x.noteCategories.Any(a => a.Category.Title.ToLower() == category.ToLower()));
                 }
 
                 return notes.Skip((page-1)*pageSize).Take(pageSize).ToList();

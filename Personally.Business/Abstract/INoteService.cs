@@ -15,8 +15,7 @@ namespace Personally.Business.Abstract
 
         void Delete(Note Entity);
 
-        List<Note> GetNotesByCategory(int? id,int page,int pageSize);
-
-
+        List<Note> GetNotesByCategory(string category,int page,int pageSize);
+        int GetCounByCategory(string category);
     }
 }

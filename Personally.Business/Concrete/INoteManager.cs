@@ -35,14 +35,19 @@ namespace Personally.Business.Concrete
             return _noteDal.GetById(id);
         }
 
+        public int GetCounByCategory(string category)
+        {
+            return _noteDal.GetCounByCategory(category);
+        }
+
         public Note GetNoteDetail(int id)
         {
             return _noteDal.GetNoteDetail(id);
         }
 
-        public List<Note> GetNotesByCategory(int? id, int page, int pageSize)
+        public List<Note> GetNotesByCategory(string category, int page, int pageSize)
         {
-            return _noteDal.GetNotesByCategory(id,page,pageSize);
+            return _noteDal.GetNotesByCategory(category, page,pageSize);
         }
 
         public void Update(Note Entity)

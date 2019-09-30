@@ -12,7 +12,7 @@ namespace Personally.DataAccess.Abstract
 
         Note GetNoteDetail(int id);
 
-        List<Note> GetNotesByCategory(int? id, int page, int pageSize);
-
+        List<Note> GetNotesByCategory(string category, int page, int pageSize);
+        int GetCounByCategory(string category);
     }
 }
