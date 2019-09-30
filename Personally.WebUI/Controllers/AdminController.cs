@@ -29,28 +29,28 @@ namespace Personally.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateNote(NoteModel model,IFormFile formFile )
+        public async Task<IActionResult> CreateNote(NoteModel model,IFormFile file )
         {
-            if(formFile!=null)
+            if(file!=null)
             {
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\img", formFile.FileName);
+                var path = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot\\img", file.FileName);
 
                 using(var stream=new FileStream(path,FileMode.Create))
                 {
-                    await formFile.CopyToAsync(stream);
+                    await file.CopyToAsync(stream);
                 }
                 var entity = new Note
                 {
                     Title = model.Title,
                     Description = model.Description,
-                    ImageUrl = model.ImageUrl,
+                    ImageUrl = file.FileName,
                     IsDraft = model.IsDraft,
                     Owner = model.Owner
                 };
                 _noteService.Create(entity);
                 
             }
-            return Redirect("Index");
+            return Redirect("ListNotes");
         }
 
 
