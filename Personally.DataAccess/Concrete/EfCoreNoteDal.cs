@@ -25,7 +25,7 @@ namespace Personally.DataAccess.Concrete
                     .FirstOrDefault();
             }
         }
-        public List<Note> GetNotesByCategory(int? id)
+        public List<Note> GetNotesByCategory(int? id, int page, int pageSize)
         {
             using (var context=new PersonallyContext())
             {
@@ -38,7 +38,7 @@ namespace Personally.DataAccess.Concrete
                         .Where(x => x.noteCategories.Any(i=>i.Category.Id==id));
                 }
 
-                return notes.ToList();
+                return notes.Skip((page-1)*pageSize).Take(pageSize).ToList();
             }
         }
     }

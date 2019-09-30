@@ -51,11 +51,12 @@ namespace Personally.WebUI.Controllers
             return View();
         }
 
-        public IActionResult List(int? id)
+        public IActionResult List(int? id,int page=1)
         {
+            const int pageSize = 2;
             return View(new NoteListModel()
             {
-                Notes=_noteService.GetNotesByCategory(id)
+                Notes=_noteService.GetNotesByCategory(id,page,pageSize)
             });
         }
 

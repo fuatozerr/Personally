@@ -40,9 +40,9 @@ namespace Personally.Business.Concrete
             return _noteDal.GetNoteDetail(id);
         }
 
-        public List<Note> GetNotesByCategory(int? id)
+        public List<Note> GetNotesByCategory(int? id, int page, int pageSize)
         {
-            return _noteDal.GetNotesByCategory(id);
+            return _noteDal.GetNotesByCategory(id,page,pageSize);
         }
 
         public void Update(Note Entity)
