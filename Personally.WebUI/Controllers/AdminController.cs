@@ -31,6 +31,8 @@ namespace Personally.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateNote(NoteModel model,IFormFile file )
         {
+            if(ModelState.IsValid)
+            { 
             if(file!=null)
             {
                 var path = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot\\img", file.FileName);
@@ -50,7 +52,10 @@ namespace Personally.WebUI.Controllers
                 _noteService.Create(entity);
                 
             }
-            return Redirect("ListNotes");
+                return Redirect("ListNotes");
+
+            }
+            return View(); 
         }
 
 
@@ -82,25 +87,38 @@ namespace Personally.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> EditNote(NoteModel model,IFormFile file)
         {
-            var entity = _noteService.GetById(model.Id);
 
-            entity.ImageUrl = model.ImageUrl;
-            entity.IsDraft = model.IsDraft;
-            entity.Owner = model.Owner;
-            entity.Title = model.Title;
-            entity.Description = model.Description;
-
-            if (file != null)
+            if (ModelState.IsValid)
             {
-                entity.ImageUrl = file.FileName;
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\img", file.FileName);
-                using (var stream = new FileStream(path, FileMode.Create))
+                var entity = _noteService.GetById(model.Id);
+
+                entity.ImageUrl = model.ImageUrl;
+                entity.IsDraft = model.IsDraft;
+                entity.Owner = model.Owner;
+                entity.Title = model.Title;
+                entity.Description = model.Description;
+
+                if (file != null)
                 {
-                    await file.CopyToAsync(stream);
+                    entity.ImageUrl = file.FileName;
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\img", file.FileName);
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
                 }
+                _noteService.Update(entity);
+                            return RedirectToAction("EditNote", entity);
+
             }
-            _noteService.Update(entity);
-            return RedirectToAction("EditNote", entity);
+            return RedirectToAction("EditNote", model.Id);
+        }
+
+        public IActionResult DeleteNote(int deleteNote)
+        {
+            var entity = _noteService.GetById(deleteNote);
+            _noteService.Delete(entity);
+            return Redirect("ListNotes");
         }
     }
 }

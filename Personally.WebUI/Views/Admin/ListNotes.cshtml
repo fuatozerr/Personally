@@ -3,7 +3,7 @@
 
 @if (Model.Notes.Count() > 0)
 {
-
+   
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -28,8 +28,8 @@
                     <td>
                         <a class="btn btn-primary btn-sm mr-2" href="/admin/EditNote/@item.Id">Edit</a>
 
-                        <form action="/Admin/DeleteProduct" method="post">
-                            <input type="hidden" name="productId" value="@item.Id" />
+                        <form action="/Admin/DeleteNote" method="post">
+                            <input type="hidden" name="deleteNote" value="@item.Id" />
                             <button type="submit" class="btn btn-danger"> Sil</button>
                         </form>
                     </td>
