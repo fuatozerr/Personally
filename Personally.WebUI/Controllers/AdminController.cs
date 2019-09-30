@@ -60,5 +60,47 @@ namespace Personally.WebUI.Controllers
                 Notes=_noteService.GetAll()
             });
         }
+
+
+        public IActionResult EditNote(int id)
+        {
+            var entity = _noteService.GetById((int)id);
+
+            var model = new NoteModel()
+            {
+                Id=entity.Id,
+                Title=entity.Title,
+                Description=entity.Description,
+                ImageUrl=entity.ImageUrl,
+                Owner=entity.Owner
+            };
+
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditNote(NoteModel model,IFormFile file)
+        {
+            var entity = _noteService.GetById(model.Id);
+
+            entity.ImageUrl = model.ImageUrl;
+            entity.IsDraft = model.IsDraft;
+            entity.Owner = model.Owner;
+            entity.Title = model.Title;
+            entity.Description = model.Description;
+
+            if (file != null)
+            {
+                entity.ImageUrl = file.FileName;
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\img", file.FileName);
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            }
+            _noteService.Update(entity);
+            return RedirectToAction("EditNote", entity);
+        }
     }
 }
