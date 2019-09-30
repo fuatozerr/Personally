@@ -54,7 +54,7 @@ namespace Personally.WebUI
 
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Note}/{action=List}/{id?}");
             });
 
         }
