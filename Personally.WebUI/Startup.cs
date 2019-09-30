@@ -20,10 +20,10 @@ namespace Personally.WebUI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<INoteDal, EfCoreNoteDal>();
-            //services.AddScoped<ICategoryDal, ICategoryManager>(); ilerde yapacağım
-            services.AddScoped<INoteService, INoteManager>();
             services.AddScoped<ICategoryDal, EfCoreCategoryDal>();
+            services.AddScoped<INoteDal, EfCoreNoteDal>();
+            services.AddScoped<ICategoryService, ICategoryManager>();
+            services.AddScoped<INoteService, INoteManager>();
 
 
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2); //mvc şekli

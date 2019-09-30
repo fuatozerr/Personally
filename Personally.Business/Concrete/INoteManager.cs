@@ -42,7 +42,7 @@ namespace Personally.Business.Concrete
 
         public void Update(Note Entity)
         {
-            _noteDal.Delete(Entity);
+            _noteDal.Update(Entity);
         }
     }
 }
