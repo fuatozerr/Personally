@@ -42,7 +42,7 @@
             <ul>
                 @foreach (var item in Model.Categories)
                 {
-                <li><a href="#">@item.Title
+                <li><a asp-controller="Note" asp-action="List" asp-route-id="@item.Id">@item.Title
                     <span>(3) sayı gelcek</span></a></li>
                 }
                 

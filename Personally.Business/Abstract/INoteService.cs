@@ -15,6 +15,8 @@ namespace Personally.Business.Abstract
 
         void Delete(Note Entity);
 
+        List<Note> GetNotesByCategory(int? id);
+
 
     }
 }

@@ -51,6 +51,13 @@ namespace Personally.WebUI.Controllers
             return View();
         }
 
+        public IActionResult List(int? id)
+        {
+            return View(new NoteListModel()
+            {
+                Notes=_noteService.GetNotesByCategory(id)
+            });
+        }
 
     }
 }

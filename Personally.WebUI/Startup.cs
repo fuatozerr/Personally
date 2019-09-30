@@ -47,6 +47,12 @@ namespace Personally.WebUI
             app.UseMvc(routes => {
 
                 routes.MapRoute(
+                    name: "notes",
+                    template: "notes/{id?}",
+                    defaults:new {controller="Note",action="List"});
+
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });

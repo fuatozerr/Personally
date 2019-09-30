@@ -25,10 +25,21 @@ namespace Personally.DataAccess.Concrete
                     .FirstOrDefault();
             }
         }
-
-        public Note GetNoteDetails(int id)
+        public List<Note> GetNotesByCategory(int? id)
         {
-            throw new NotImplementedException();
+            using (var context=new PersonallyContext())
+            {
+                var notes = context.Notes.AsQueryable(); //içinde sorgu yapılcak
+
+                if(id!=null)
+                {
+                    notes = notes.Include(x => x.noteCategories)
+                        .ThenInclude(x => x.Category)
+                        .Where(x => x.noteCategories.Any(i=>i.Category.Id==id));
+                }
+
+                return notes.ToList();
+            }
         }
     }
 }
