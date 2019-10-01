@@ -8,6 +8,7 @@ using System.Text;
 namespace Personally.DataAccess.Concrete
 {
     public class EfCoreCategoryDal : EfCoreGenericRepository<Category, PersonallyContext>, ICategoryDal
+
     {
         public List<Category> GetAllCategories()
         {

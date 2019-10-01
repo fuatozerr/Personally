@@ -14,9 +14,12 @@ namespace Personally.WebUI.Controllers
     public class AdminController : Controller
     {
         private INoteService _noteService;
-        public AdminController(INoteService noteService)
+        private ICategoryService _categoryService;
+        public AdminController(INoteService noteService,ICategoryService categoryService)
         {
             _noteService = noteService;
+            _categoryService = categoryService;
+
         }
         public IActionResult Index()
         {
@@ -119,6 +122,56 @@ namespace Personally.WebUI.Controllers
             var entity = _noteService.GetById(deleteNote);
             _noteService.Delete(entity);
                 return Redirect("ListNotes");
+        }
+
+        public IActionResult CategoryList()
+        {
+            return View(new CategoryListModel() {
+                Categories=_categoryService.GetAllCategories()
+            }
+            );
+        }
+
+        public IActionResult EditCategory(int id)
+        {
+            var entity = _categoryService.GetById(id);
+            return View(new CategoryModel()
+            {
+                Id=entity.Id,
+                Title=entity.Title
+            });
+        }
+        [HttpPost]
+        public IActionResult EditCategory(CategoryModel model)
+        {
+            var entity = _categoryService.GetById(model.Id);
+
+            entity.Title = model.Title;
+            _categoryService.Update(entity);
+            return RedirectToAction("CategoryList");
+        }
+
+        public IActionResult CreateCategory()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreateCategory(CategoryModel model)
+        {
+            var entity = new Category()
+            {
+                Title = model.Title
+            };
+            _categoryService.Create(entity);
+            return RedirectToAction("CategoryList");
+        }
+
+
+        public IActionResult DeleteCategory(int categoryId)
+        {
+            var entity = _categoryService.GetById(categoryId);
+            _categoryService.Delete(entity);
+            return RedirectToAction("CategoryList");
         }
     }
 }

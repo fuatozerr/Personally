@@ -30,6 +30,11 @@ namespace Personally.Business.Concrete
             return _categoryDal.GetAllCategories();
         }
 
+        public Category GetById(int id)
+        {
+            return _categoryDal.GetById(id);
+        }
+
         public void Update(Category entity)
         {
             _categoryDal.Update(entity);

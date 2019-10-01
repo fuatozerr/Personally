@@ -18,7 +18,8 @@ namespace Personally.WebUI.ViewComponents
         public IViewComponentResult Invoke()
         {
             return View(new CategoryListViewModel() {
-                Categories=_categoryService.GetAllCategories()
+
+                Categories = _categoryService.GetAllCategories()
 
             });           
         }
