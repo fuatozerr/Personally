@@ -16,6 +16,18 @@
                 <li class="nav-item">
                     <a class="nav-link" asp-controller="Note" asp-action="List">Notlar</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a asp-controller="Admin"
+                           asp-action="ListNotes" class="dropdown-item" >Notları Listele</a>
+                        <a class="dropdown-item" asp-controller="Admin" asp-action="CategoryList"> Kategori Listele</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Hakkımda</a>
                 </li>

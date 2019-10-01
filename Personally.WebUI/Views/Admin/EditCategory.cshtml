@@ -3,12 +3,8 @@
     ViewData["Title"] = "CreateProduct";
 }
 
-<h1>Edit Category</h1>
-
-<hr />
-
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
 
         <form asp-controller="Admin" asp-action="EditCategory" method="post">
             <input type="hidden" name="categoryId" value="@Model.Id" />
