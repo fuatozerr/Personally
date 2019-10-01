@@ -61,11 +61,16 @@ namespace Personally.WebUI
                    template: "admin/note",
                    defaults: new { controller = "Admin", action = "ListNotes" });
 
+                routes.MapRoute(
+                  name: "detail",
+                  template: "{title}/{id}",
+                  defaults: new { controller = "Note", action = "Detail" });
+
 
 
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Note}/{action=List}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
 
         }

@@ -1,4 +1,5 @@
 ﻿@model Personally.WebUI.Models.NoteListModel
+@using Personally.WebUI.Helpers
 <div class="container">
 
     <div class="row">
@@ -17,7 +18,9 @@
                     <div class="card-body">
                         <h2 class="card-title">@item.Title</h2>
                         <p class="card-text">@item.Description</p>
-                        <a asp-controller="Note" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary">Devamını oku &rarr;</a>
+                        <a href="/@Url.FriendlyUrl(item.Title)/@item.Id" target="_blank" style="text-decoration: none;" class="btn btn-primary">
+                            Devamını oku
+                        </a>
                     </div>
                     <div class="card-footer text-muted">
                         Posted on January 1, 2017 by @item.Owner

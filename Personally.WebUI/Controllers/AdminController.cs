@@ -118,7 +118,7 @@ namespace Personally.WebUI.Controllers
         {
             var entity = _noteService.GetById(deleteNote);
             _noteService.Delete(entity);
-            return Redirect("ListNotes");
+                return Redirect("ListNotes");
         }
     }
 }
