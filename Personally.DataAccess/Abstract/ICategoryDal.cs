@@ -7,9 +7,8 @@ namespace Personally.DataAccess.Abstract
 {
     public interface ICategoryDal:IRepository<Category>
     {
-        Category GetByIdWithProducts(int id);
         List<Category> GetAllCategories();
-
-
+        Category GetByWithNotes(int id);
+        void DeleteFromCategory(int categoryId, int noteId);
     }
 }

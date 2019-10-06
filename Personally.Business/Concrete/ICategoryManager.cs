@@ -25,6 +25,11 @@ namespace Personally.Business.Concrete
             _categoryDal.Delete(entity);
         }
 
+        public void DeleteFromCategory(int categoryId, int noteId)
+        {
+            _categoryDal.DeleteFromCategory(categoryId, noteId);
+        }
+
         public List<Category> GetAllCategories()
         {
             return _categoryDal.GetAllCategories();
@@ -33,6 +38,11 @@ namespace Personally.Business.Concrete
         public Category GetById(int id)
         {
             return _categoryDal.GetById(id);
+        }
+
+        public Category GetByWithNotes(int id)
+        {
+            return _categoryDal.GetByWithNotes(id);
         }
 
         public void Update(Category entity)

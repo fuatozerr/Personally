@@ -134,11 +134,12 @@ namespace Personally.WebUI.Controllers
 
         public IActionResult EditCategory(int id)
         {
-            var entity = _categoryService.GetById(id);
+            var entity = _categoryService.GetByWithNotes(id);
             return View(new CategoryModel()
             {
                 Id=entity.Id,
-                Title=entity.Title
+                Title=entity.Title,
+                Notes=entity.noteCategories.Select(x=>x.Note).ToList()
             });
         }
         [HttpPost]
@@ -172,6 +173,13 @@ namespace Personally.WebUI.Controllers
             var entity = _categoryService.GetById(categoryId);
             _categoryService.Delete(entity);
             return RedirectToAction("CategoryList");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteFromCategory(int categoryId, int noteId)
+        {
+            _categoryService.DeleteFromCategory(categoryId, noteId);
+            return Redirect("EditCategory/"+categoryId);
         }
     }
 }
