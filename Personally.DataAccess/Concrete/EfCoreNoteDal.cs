@@ -15,6 +15,14 @@ namespace Personally.DataAccess.Concrete
             throw new NotImplementedException();
         }
 
+        public Note GetByIdWithCategories(int id)
+        {
+            using (var context =new PersonallyContext())
+            {
+                return context.Notes.Where(x => x.Id == id).Include(x => x.noteCategories).ThenInclude(x => x.Category).FirstOrDefault();
+            }
+        }
+
         public int GetCounByCategory(string category)
         {
 

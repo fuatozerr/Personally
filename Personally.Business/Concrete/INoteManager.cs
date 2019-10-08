@@ -20,6 +20,11 @@ namespace Personally.Business.Concrete
             _noteDal.Create(Entity);
         }
 
+        public void CreateNoteWithCategory(Note Entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Delete(Note Entity)
         {
             _noteDal.Delete(Entity);
@@ -33,6 +38,11 @@ namespace Personally.Business.Concrete
         public Note GetById(int id)
         {
             return _noteDal.GetById(id);
+        }
+
+        public Note GetByIdWithCategories(int id)
+        {
+            return _noteDal.GetByIdWithCategories(id);
         }
 
         public int GetCounByCategory(string category)

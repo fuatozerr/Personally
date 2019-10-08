@@ -20,5 +20,7 @@ namespace Personally.WebUI.Models
         [StringLength(60, MinimumLength = 10, ErrorMessage = "Ürün ismi 10 ile 60 arası olmalı")]
         public string Description { get; set; }
         public string ImageUrl { get; set; }
+
+        public List<Category> SelectedCategories { get; set; }
     }
 }

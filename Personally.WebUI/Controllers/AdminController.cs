@@ -51,6 +51,7 @@ namespace Personally.WebUI.Controllers
                     ImageUrl = file.FileName,
                     IsDraft = model.IsDraft,
                     Owner = model.Owner
+                    
                 };
                 _noteService.Create(entity);
                 
@@ -72,7 +73,7 @@ namespace Personally.WebUI.Controllers
 
         public IActionResult EditNote(int id)
         {
-            var entity = _noteService.GetById((int)id);
+            var entity = _noteService.GetByIdWithCategories((int)id);
 
             var model = new NoteModel()
             {
@@ -80,10 +81,11 @@ namespace Personally.WebUI.Controllers
                 Title=entity.Title,
                 Description=entity.Description,
                 ImageUrl=entity.ImageUrl,
-                Owner=entity.Owner
+                Owner=entity.Owner,
+                SelectedCategories=entity.noteCategories.Select(i=>i.Category).ToList()
             };
 
-
+            ViewBag.Categories = _categoryService.GetAllCategories();
             return View(model);
         }
 
