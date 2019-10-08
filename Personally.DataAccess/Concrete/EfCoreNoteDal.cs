@@ -67,5 +67,31 @@ namespace Personally.DataAccess.Concrete
                 return notes.Skip((page-1)*pageSize).Take(pageSize).ToList();
             }
         }
+
+        public void Update(Note entity, int[] categoryIds)
+        {
+           using(var context=new PersonallyContext())
+            {
+                var note = context.Notes.Include(x => x.noteCategories)
+                    .FirstOrDefault(x => x.Id == entity.Id);
+
+
+                if(note!=null)
+                {
+                    note.Title = entity.Title;
+                    note.Owner = entity.Owner;
+                    note.ImageUrl = entity.ImageUrl;
+                    note.IsDraft = entity.IsDraft;
+                    note.noteCategories = categoryIds.Select(catid => new NoteCategory()
+                    {
+                        CategoryId=catid,
+                        NoteId=entity.Id
+                    }).ToList();
+
+                    context.SaveChanges();
+                        
+                }
+            }
+        }
     }
 }

@@ -20,5 +20,6 @@ namespace Personally.Business.Abstract
 
         void CreateNoteWithCategory(Note Entity);
         Note GetByIdWithCategories(int id);
+        void Update(Note entity, int[] categoryIds);
     }
 }

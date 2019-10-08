@@ -64,5 +64,10 @@ namespace Personally.Business.Concrete
         {
             _noteDal.Update(Entity);
         }
+
+        public void Update(Note entity, int[] categoryIds)
+        {
+            _noteDal.Update(entity, categoryIds);
+        }
     }
 }

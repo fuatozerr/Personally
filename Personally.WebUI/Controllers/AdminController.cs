@@ -90,7 +90,7 @@ namespace Personally.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditNote(NoteModel model,IFormFile file)
+        public async Task<IActionResult> EditNote(NoteModel model,IFormFile file, int[] categoryIds)
         {
 
             if (ModelState.IsValid)
@@ -112,7 +112,7 @@ namespace Personally.WebUI.Controllers
                         await file.CopyToAsync(stream);
                     }
                 }
-                _noteService.Update(entity);
+                _noteService.Update(entity,categoryIds);
                             return RedirectToAction("EditNote", entity);
 
             }
