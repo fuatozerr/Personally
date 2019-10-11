@@ -18,8 +18,8 @@ namespace Personally.Business.Abstract
         List<Note> GetNotesByCategory(string category,int page,int pageSize);
         int GetCounByCategory(string category);
 
-        void CreateNoteWithCategory(Note Entity);
         Note GetByIdWithCategories(int id);
         void Update(Note entity, int[] categoryIds);
+        void CreteNoteWithCategory(Note entity, int[] categoryIds);
     }
 }

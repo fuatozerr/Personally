@@ -15,6 +15,7 @@ namespace Personally.Entities
         public string ImageUrl { get; set; }
         public List<Comment> Comments { get; set; }
         public List<NoteCategory> noteCategories { get; set; }
+        public int CategoryId { get; set; }
 
     }
 }

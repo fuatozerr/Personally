@@ -20,9 +20,11 @@ namespace Personally.Business.Concrete
             _noteDal.Create(Entity);
         }
 
-        public void CreateNoteWithCategory(Note Entity)
+    
+
+        public void CreteNoteWithCategory(Note entity, int[] categoryIds)
         {
-            throw new NotImplementedException();
+            _noteDal.CreteNoteWithCategory(entity, categoryIds);
         }
 
         public void Delete(Note Entity)

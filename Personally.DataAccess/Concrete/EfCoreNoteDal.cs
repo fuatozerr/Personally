@@ -10,6 +10,26 @@ namespace Personally.DataAccess.Concrete
 {
     public class EfCoreNoteDal : EfCoreGenericRepository<Note, PersonallyContext>, INoteDal
     {
+        public void CreteNoteWithCategory(Note entity, int[] categoryIds)
+        {
+            //using (var context = new PersonallyContext())
+            //{
+            //    context.Notes.Add(entity);
+            //    context.Categories.AddRange(categoryIds) ;
+            //}
+            throw new NotImplementedException();
+
+        }
+
+        //public void CreteNoteWithCategory(Note entity, int[] categoryIds)
+        //{
+        //    using(var context =new PersonallyContext())
+        //    {
+        //        context.Notes.cre(entity,categoryIds);
+        //    }
+
+        //}
+
         public List<Note> GetAllNote()
         {
             throw new NotImplementedException();

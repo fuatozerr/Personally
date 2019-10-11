@@ -16,5 +16,6 @@ namespace Personally.DataAccess.Abstract
         int GetCounByCategory(string category);
         Note GetByIdWithCategories(int id);
         void Update(Note entity, int[] categoryIds);
+        void CreteNoteWithCategory(Note entity, int[] categoryIds);
     }
 }

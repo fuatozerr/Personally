@@ -10,5 +10,8 @@ namespace Personally.Entities
         public string Title { get; set; }
 
         public List<NoteCategory> noteCategories { get; set; }
+        public string Description { get; set; }
+
+        public int NoteId { get; set; }
     }
 }

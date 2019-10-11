@@ -28,11 +28,12 @@ namespace Personally.WebUI.Controllers
 
         public IActionResult CreateNote()
         {
+            ViewBag.Categories = _categoryService.GetAllCategories();
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateNote(NoteModel model,IFormFile file )
+        public async Task<IActionResult> CreateNote(NoteModel model,IFormFile file,int[] categoryIds )
         {
             if(ModelState.IsValid)
             { 
@@ -54,6 +55,7 @@ namespace Personally.WebUI.Controllers
                     
                 };
                 _noteService.Create(entity);
+                    //_noteService.CreteNoteWithCategory(entity, categoryIds);
                 
             }
                 return Redirect("ListNotes");
